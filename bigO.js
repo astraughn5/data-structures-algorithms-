@@ -26,4 +26,18 @@ function consoleLogFirstItem (array) {
 	console.log(array[0]) // O(1)
 	console.log(array[1]) // O(1)
    }
-consoleLogFirstItem(array) // function is O(2) everytime since there are 2 operations
+//consoleLogFirstItem(array) // function is O(2) everytime since there are 2 operations
+
+
+//O(n^2) which is called quadratic time
+const boxes = [1,2,3,4,5]
+
+function logPairs(array){
+	for (let i = 0; i < array.length; i++){
+		for (let j = 0; j < array.length; j++){
+			console.log(array[i] , array[j])
+		}
+	}
+}
+logPairs(boxes)
+//this is O(n) * O(n) = O(n^2)
