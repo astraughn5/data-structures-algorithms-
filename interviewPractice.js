@@ -10,7 +10,7 @@
 
 
 const array1 = ['a','b','c','d','x']
-const array2 = ['z','y','x']
+const array2 = ['z','y','x', 'e','f','g']
 
 const array3 = ['a','b','c','d','x']
 const array4 = ['z','y','i']
@@ -21,16 +21,40 @@ const array4 = ['z','y','i']
  //Example: see above
 
  function commonItems(input1, input2){
-	// create a flattened array with all elements O(a * b)
-	// use a filter to check if the element x has the same element O(n)
-	// if array length is > 1 then return true otherwise return false O(1)
-	//nested for loop
+	// turn input1 into an object with boolean properties by looping through array
+	let obj = {}
+	input1.forEach(x => {
+		if (!obj[input1[x]]){
+			obj[x] = true
+		}
+	})
+	// check if input2 contains the same property by looping through
+	//console.log(obj)
+	
+	for (let j = 0; j < input2.length; j++){
+		if (obj[input2[j]]){
+			return true
+		}
+	}
+	return false
+	
+	// time complexity = O(a + b)
+	// space complexity = O(a)
+ }
+ 
+ console.log(commonItems(array1,array2)) // will return true
+ console.log(commonItems(array3, array4)) // will return false
+
+
+ function commonItems1(input1, input2){
+	//nested for loop O(a * b) / BRUTE FORCE -- you could get rid of match and else statement and put the return false outside the nested loop
 	let match = false
 
 	for (let i = 0; i < input1.length; i++){
 		for (let j = 0; j < input2.length; j++){
 			if (input1[i] === input2[j]){
 				match = true
+				break;
 			}
 			else {
 				match = false
@@ -38,8 +62,16 @@ const array4 = ['z','y','i']
 		}
 	}
 	return match
+	// time complexity = O(a * b)
+	//space complexity = O(1)
  }
- 
- 
- console.log(commonItems(array1,array2)) // will return true
- console.log(commonItems(array3, array4)) // will return false
+ //console.log(commonItems1(array1,array2)) // will return true
+// console.log(commonItems1(array3, array4)) // will return false
+
+function commonItems2 (input1, input2){
+	return input1.some(item => input2.includes(item))
+	//time complexity = O(a * b)
+	//space complexity = O(1)
+}
+ console.log(commonItems2(array1,array2)) // will return true
+console.log(commonItems2(array3, array4)) // will return false
