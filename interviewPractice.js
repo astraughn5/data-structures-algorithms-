@@ -116,3 +116,43 @@ function reverseString2 (str){
 
 }
 //console.log(reverseString2(string))
+
+//PRACTICE - MERGE SORTED ARRAYS
+const array5 = [0,3,4,31]
+const array6 = [4,6,30]
+//merge these arrays in a sorted manner
+
+function mergeSortedArrays(array1, array2){
+	if (!array1 || !array2 || Array.isArray(array1) !== true || Array.isArray(array2) !== true){
+		return 'error'
+	}
+	if (array1.length === 0){
+		return array2
+	}
+	if (array2.length === 0){
+		return array1
+	}
+	// console.log(typeof array1)
+	// console.log(Array.isArray(array1))
+
+	const mergedArray = [...array1, ...array2]
+	mergedArray.sort((a,b) => a - b)
+	return mergedArray
+}
+
+//console.log(mergeSortedArrays(array5, array6))
+
+//ANSWER 
+function mergeSortedArrays1 (array1, array2){
+	const mergedArray = []
+	let array1Item = array1[0]
+	let array2Item = array2[0]
+
+	while (array1Item || array2Item){
+		
+	}
+
+	return mergedArray
+}
+
+mergeSortedArrays1(array5, array6)
