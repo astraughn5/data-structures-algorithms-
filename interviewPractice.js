@@ -42,8 +42,8 @@ const array4 = ['z','y','i']
 	// space complexity = O(a)
  }
  
- console.log(commonItems(array1,array2)) // will return true
- console.log(commonItems(array3, array4)) // will return false
+ //console.log(commonItems(array1,array2)) // will return true
+ //console.log(commonItems(array3, array4)) // will return false
 
 
  function commonItems1(input1, input2){
@@ -73,5 +73,46 @@ function commonItems2 (input1, input2){
 	//time complexity = O(a * b)
 	//space complexity = O(1)
 }
- console.log(commonItems2(array1,array2)) // will return true
-console.log(commonItems2(array3, array4)) // will return false
+//console.log(commonItems2(array1,array2)) // will return true
+//console.log(commonItems2(array3, array4)) // will return false
+
+
+//ARRAY PRACTICE QUESTION
+const string = 'Hi My name is Alex'
+
+function reverseString(str){
+	let reverse = ''
+	let wordSplit = str.split('')
+	for (let i = wordSplit.length -1 ; i > 0 ; i--){
+		reverse += wordSplit[i]
+	}
+	//console.log(wordSplit)
+	console.log(reverse)
+}
+//reverseString(string)
+
+function reverseString1(str){
+	return str.split('').reverse().join('')
+}
+
+//console.log(reverseString1(string))
+
+
+//Answer -- did not think of checking the input!
+
+function reverseString2 (str){
+	if (!str || str.length < 2 || typeof str !== 'string'){
+		return 'errrkn'
+	}
+
+	const backwards = []
+	const totalItems = str.length - 1
+	for (let i = totalItems ; i >= 0; i--){
+		backwards.push(str[i])
+	}
+	//console.log(backwards)
+	return backwards.join('')
+
+
+}
+//console.log(reverseString2(string))
