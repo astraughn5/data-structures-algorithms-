@@ -149,10 +149,64 @@ function mergeSortedArrays1 (array1, array2){
 	let array2Item = array2[0]
 
 	while (array1Item || array2Item){
-		
+
 	}
 
 	return mergedArray
 }
 
-mergeSortedArrays1(array5, array6)
+//mergeSortedArrays1(array5, array6)
+
+class HashTable {
+	constructor(size){
+	  this.data = new Array(size);
+	}
+	set(key, value){
+		const index = this._hash(key)
+		this.data[index] = [key,value]
+		return index
+	}
+	get(key){
+		const index = this._hash(key)
+		return this.data[index]
+	}
+	_hash(key) {
+	  let hash = 0;
+	  for (let i =0; i < key.length; i++){
+		  hash = (hash + key.charCodeAt(i) * i) % this.data.length
+	  }
+	  return hash;
+	}
+  }
+  
+//   const myHashTable = new HashTable(50);
+//   myHashTable.set('grapes', 10000)
+//   myHashTable.get('grapes')
+//   myHashTable.set('apples', 9)
+//   myHashTable.get('apples')
+
+
+//P: will it always be an array? will it always be an integer? 
+//R: return the first recurring character as integer
+/*ways to do this
+1. nested loop O(n^2)
+2. Set to check the unique value O(n)
+*/
+function firstRecurringCharacter (array){
+	//create an object that keeps the insertion order and the number can be the key
+	// loop through and add the element into the Set and since set is unique key, return when we find an element already exists
+	let check = new Set()
+	for (let i = 0; i <= array.length - 1; i++){
+		if (check.has(array[i])){
+			return array[i]
+		}
+		else{
+			check.add(array[i])
+		}
+	}
+
+}
+
+console.log(firstRecurringCharacter([2,5,1,2,3,5,1,2,4])) // result = 2
+console.log(firstRecurringCharacter([2,1,1,2,3,5,1,2,4])) // result = 1
+console.log(firstRecurringCharacter([2,3,4,5])) // result = undefined
