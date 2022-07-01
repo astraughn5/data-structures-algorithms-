@@ -216,7 +216,7 @@ class NodeClass {
 	constructor(value){
 		this.value = value
 		this.next = null
-		this.previous = null //doubly
+		//this.previous = null //doubly
 	}
 }
 
@@ -371,8 +371,8 @@ class LinkedList { //this is a doubly linkedlist not a singly, if you remove pre
 
 
 }
-const myLinkedList = new LinkedList(10)
-myLinkedList.append(5)
+//const myLinkedList = new LinkedList(10)
+//myLinkedList.append(5)
 // myLinkedList.prepend(1)
 // //myLinkedList.append(18)
 // console.log(myLinkedList.insert(1,3))
@@ -382,4 +382,23 @@ myLinkedList.append(5)
 // // console.log(myLinkedList.remove(3))
 // //console.log(myLinkedList.printList())
 // console.log(myLinkedList)
-console.log(myLinkedList.reverse())
+//console.log(myLinkedList.reverse())
+
+
+class Stack {
+	constructor(){
+	  this.top = null;
+	  this.bottom = null;
+	  this.length = 0;
+	}
+	peek() {
+	}
+	push(value){
+	}
+	pop(){
+	}
+	//isEmpty
+  }
+  
+  const myStack = new Stack();
+  
