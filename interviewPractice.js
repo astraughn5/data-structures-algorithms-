@@ -385,20 +385,101 @@ class LinkedList { //this is a doubly linkedlist not a singly, if you remove pre
 //console.log(myLinkedList.reverse())
 
 
-class Stack {
+class Stack { //LIFO
 	constructor(){
 	  this.top = null;
 	  this.bottom = null;
 	  this.length = 0;
 	}
-	peek() {
+	peek() { //see the top item (last item)
+		return this.top
 	}
-	push(value){
+	push(value){ //add an item
+		const node = new NodeClass(value)
+
+		if (this.isEmpty()){ // * -- top & bottom
+			this.top = node
+			this.bottom = node
+		}else { //* (head) + * (bottom)
+			const holdingPointer = this.top
+			this.top = node
+			this.top.next = holdingPointer
+		}
+		this.length++
+		return this
 	}
-	pop(){
+	pop(){ //remove the last item
+		if (!this.top){
+			return null
+		}
+		else if(this.top === this.bottom){ //*
+			this.top = null
+			this.bottom = null
+		}
+		else { // * -- * -- *
+			//const holdingPointer = this.top
+			this.top = this.top.next
+		}
+		this.length--
+		return this
+
 	}
-	//isEmpty
+	isEmpty(){
+		if (this.length === 0){
+			return 'Stack is Empty'
+		}
+	}
   }
   
-  const myStack = new Stack();
+//   const myStack = new Stack();
+//   myStack.push('google')
+//   myStack.push('udemy')
+//   myStack.push('discord')
+//   //console.log(myStack.push('discord'))
+//   //console.log(myStack.peek())
+//   myStack.pop()
+//   myStack.pop()
+//   //myStack.pop()
+//   console.log(myStack)
+  //console.log(myStack.isEmpty())
   
+  class Array { //LIFO
+	constructor(){
+	  this.array = []
+	}
+
+	peek() { //see the top item (last item)
+		return this.array[this.array.length-1]
+	}
+	push(value){ //add an item
+		this.array.push(value)
+		return this
+	}
+	pop(){ //remove the last item
+		this.array.pop()
+		return this
+
+	}
+	isEmpty(){
+		if (this.length === 0){
+			return 'Stack is Empty'
+		}
+	}
+  }
+  
+  const myStack = new Array();
+  myStack.push('google')
+  myStack.push('udemy')
+  myStack.push('discord')
+  console.log(myStack.array.length)
+  console.log(myStack.array)
+
+//   //console.log(myStack.push('discord'))
+  
+  myStack.pop()
+  console.log(myStack.array)
+  console.log(myStack.peek())
+  //myStack.pop()
+  //myStack.pop()
+  //console.log(myStack)
+  //console.log(myStack.isEmpty())
