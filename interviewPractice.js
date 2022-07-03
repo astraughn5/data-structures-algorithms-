@@ -147,9 +147,23 @@ function mergeSortedArrays1 (array1, array2){
 	const mergedArray = []
 	let array1Item = array1[0]
 	let array2Item = array2[0]
-
+	let i = 1
+	let j = 1
 	while (array1Item || array2Item){
-
+		if(!array2Item || array1Item < array2Item){ //using !array2Item bc array 2 is smaller than array 1, if array1Item is less than array 2, undefined is always < a value
+			mergedArray.push(array1Item)
+			array1Item = array1[i]
+			i++
+		} else {
+			mergedArray.push(array2Item)
+			array2Item = array2[j]
+		 	j++
+		}
+		// if (array2Item > array1Item){
+		// 	mergedArray.push(array2Item)
+		// 	array2Item = array2[j]
+		// 	j++
+		// }
 	}
 
 	return mergedArray
@@ -433,14 +447,14 @@ class Stack { //LIFO
   
 //   const myStack = new Stack();
 //   myStack.push('google')
-//   myStack.push('udemy')
-//   myStack.push('discord')
+// myStack.push('udemy')
+// myStack.push('discord')
 //   //console.log(myStack.push('discord'))
 //   //console.log(myStack.peek())
 //   myStack.pop()
 //   myStack.pop()
 //   //myStack.pop()
-//   console.log(myStack)
+// console.log(myStack)
   //console.log(myStack.isEmpty())
   
   class Array { //LIFO
@@ -467,19 +481,96 @@ class Stack { //LIFO
 	}
   }
   
-  const myStack = new Array();
-  myStack.push('google')
-  myStack.push('udemy')
-  myStack.push('discord')
-  console.log(myStack.array.length)
-  console.log(myStack.array)
+//   const myStack = new Array();
+//   myStack.push('google')
+//   myStack.push('udemy')
+//   myStack.push('discord')
+//   console.log(myStack.array.length)
+//   console.log(myStack.array)
 
 //   //console.log(myStack.push('discord'))
   
-  myStack.pop()
-  console.log(myStack.array)
-  console.log(myStack.peek())
-  //myStack.pop()
-  //myStack.pop()
-  //console.log(myStack)
-  //console.log(myStack.isEmpty())
+
+
+
+  class Queue { //FIFO
+	constructor(){
+	  this.first = null;
+	  this.last = null;
+	  this.length = 0;
+	}
+	peek() { //return first person in queue
+		if (this.isEmpty()){
+			return null
+		}
+		return this.first
+	}
+	enqueue(value){ //add person at end of queue 
+		const person = new NodeClass(value)
+		if (this.isEmpty()){ // adding Alex
+			this.first = person
+			this.last = person
+		}else { // adding Julie -- Alex + Julie		
+			this.last.next = person
+			this.last = person
+		}
+		this.length++
+		return this
+	}
+	dequeue(){ //remove person at the front of queue
+		if (this.isEmpty()){
+			return null
+		}
+		if (this.first === this.last){
+			this.last = null
+		}
+		this.first = this.first.next
+		this.length--
+		return this
+	}
+	isEmpty(){
+		if (this.length === 0){
+			return 'Queue is Empty'
+		}
+	}
+  }
+  
+//   const myQueue = new Queue();
+//   myQueue.enqueue('Alex')
+//   myQueue.enqueue('Julie')
+//   myQueue.enqueue('Gary')
+//   myQueue.dequeue()
+//   myQueue.dequeue()
+//   myQueue.dequeue()
+//   console.log(myQueue)
+
+class Node {
+	constructor(value){
+		this.value = value,
+		this.left = null,
+		this.right = null
+	}
+}
+
+class BinarySearchTree{
+	constructor(){
+		this.root = null
+	}
+	insert(value){
+
+	}
+
+	lookup(value){
+
+	}
+
+}
+function traverse(node) {
+	const tree = { value: node.value };
+	tree.left = node.left === null ? null : traverse(node.left);
+	tree.right = node.right === null ? null : traverse(node.right);
+	return tree;
+  }
+
+const newTree = new BinarySearchTree()
+newTree.insert(9)
