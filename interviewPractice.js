@@ -557,7 +557,27 @@ class BinarySearchTree{
 		this.root = null
 	}
 	insert(value){
-
+		const newNode = new Node(value)
+		if (!this.root){
+			this.root = newNode
+		} else {
+			let currentNode = this.root
+			while(true){
+				if (value < currentNode.value){
+					if (!currentNode.left){
+						currentNode.left = newNode
+						return this
+					}
+					currentNode = currentNode.left
+				} else {
+					if (!currentNode.right){
+						currentNode.right = newNode
+						return this
+					}
+					currentNode = currentNode.right
+				}
+			}
+		}
 	}
 
 	lookup(value){
@@ -569,8 +589,13 @@ function traverse(node) {
 	const tree = { value: node.value };
 	tree.left = node.left === null ? null : traverse(node.left);
 	tree.right = node.right === null ? null : traverse(node.right);
+	console.log(tree)
 	return tree;
   }
 
 const newTree = new BinarySearchTree()
 newTree.insert(9)
+newTree.insert(12)
+newTree.insert(7)
+newTree.insert(20)
+JSON.stringify(traverse(newTree.root))
