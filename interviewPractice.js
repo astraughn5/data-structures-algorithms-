@@ -546,9 +546,9 @@ class Stack { //LIFO
 
 class Node {
 	constructor(value){
-		this.value = value,
 		this.left = null,
-		this.right = null
+		this.right = null,
+		this.value = value
 	}
 }
 
@@ -581,6 +581,24 @@ class BinarySearchTree{
 	}
 
 	lookup(value){
+		if (!this.root){
+			return false
+		}
+		let currentNode = this.root
+
+		while(currentNode){
+			if (value < currentNode.value){
+				currentNode = currentNode.left
+			} else if (value > currentNode.value){
+				currentNode = currentNode.right
+			} else if (value === currentNode.value){
+				return currentNode
+			}
+		}
+		return null
+	}
+
+	remove(value){
 
 	}
 
@@ -593,9 +611,51 @@ function traverse(node) {
 	return tree;
   }
 
-const newTree = new BinarySearchTree()
-newTree.insert(9)
-newTree.insert(12)
-newTree.insert(7)
-newTree.insert(20)
-JSON.stringify(traverse(newTree.root))
+// const newTree = new BinarySearchTree()
+// newTree.insert(9)
+// newTree.insert(12)
+// newTree.insert(7)
+// newTree.insert(20)
+// console.log(newTree.lookup(7))
+//JSON.stringify(traverse(newTree.root))
+
+//GRAPHS
+class Graph { 
+	constructor() { 
+	  this.numberOfNodes = 0;
+	  this.adjacentList = {
+	  }; 
+	} 
+	addVertex(node)  { 
+		// if (this.adjacentList === {}){
+		// 	this.adjacentList.vertex = node
+		// }
+		let i = node
+		this.adjacentList[i] = null
+		this.numberOfNodes++
+	} 
+	addEdge(node1, node2) { 
+	  //undirected Graph 
+	} 
+	showConnections() { 
+	  const allNodes = Object.keys(this.adjacentList); 
+	  for (let node of allNodes) { 
+		let nodeConnections = this.adjacentList[node]; 
+		let connections = ""; 
+		let vertex;
+		for (vertex of nodeConnections) {
+		  connections += vertex + " ";
+		} 
+		console.log(node + "-->" + connections); 
+	  } 
+  } 
+  } 
+
+  const myGraph = new Graph()
+  myGraph.addVertex('0')
+  myGraph.addVertex('1')
+  myGraph.addVertex('2')
+  myGraph.addVertex('3')
+  myGraph.addVertex('4')
+  myGraph.addVertex('5')
+  myGraph.addVertex('6')
