@@ -63,5 +63,48 @@ function findPair2 (array, sum){
 
 }
 
-console.log(findPair2(array1, sum1))
-console.log(findPair2(array2, sum2))
+// console.log(findPair2(array1, sum1))
+// console.log(findPair2(array2, sum2))
+
+
+function findFactorialRecursive(number){
+	if (number === 2){
+		return 2
+	}
+	return number * findFactorialRecursive(number - 1)
+}
+
+//console.log(findFactorialRecursive(5))
+
+function findFactorialIterative(number){
+	let answer = 1
+	if (number === 2){
+		answer = 2
+	}
+	for (let i = number; i >= 1; i--){
+		answer = i * answer
+	}
+	return answer
+}
+//console.log(findFactorialIterative(5))
+
+function fibonnaciRecursive(n){ // O(2^N)
+	if (n < 2){
+		return n
+	}
+
+	return fibonnaciRecursive(n-1) + fibonnaciRecursive(n-2)
+}
+//console.log(fibonnaciRecursive(8))
+
+
+function fibonnaciIterative(n){ //O(n)
+	let arr = [0,1]
+	for (let i = 2; i <= n; i++){
+		arr.push(arr[i-2] + arr[i-1])
+	}
+
+	return arr[n]
+
+}
+console.log(fibonnaciIterative(3))

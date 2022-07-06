@@ -630,12 +630,12 @@ class Graph {
 		// if (this.adjacentList === {}){
 		// 	this.adjacentList.vertex = node
 		// }
-		let i = node
-		this.adjacentList[i] = null
+		this.adjacentList[node] = []
 		this.numberOfNodes++
 	} 
 	addEdge(node1, node2) { 
-	  //undirected Graph 
+	  this.adjacentList[node1].push(node2)
+	  this.adjacentList[node2].push(node1) //since it is undirected you need to flip the code
 	} 
 	showConnections() { 
 	  const allNodes = Object.keys(this.adjacentList); 
@@ -659,3 +659,11 @@ class Graph {
   myGraph.addVertex('4')
   myGraph.addVertex('5')
   myGraph.addVertex('6')
+  myGraph.addEdge('3', '1'); 
+  myGraph.addEdge('3', '4'); 
+  myGraph.addEdge('4', '2'); 
+  myGraph.addEdge('4', '5'); 
+  myGraph.addEdge('1', '2'); 
+  myGraph.addEdge('1', '0'); 
+  myGraph.addEdge('0', '2'); 
+  myGraph.addEdge('6', '5');
