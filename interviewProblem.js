@@ -110,6 +110,23 @@ function fibonnaciIterative(n){ //O(n)
 //console.log(fibonnaciIterative(3))
 
 numbers = [5,2,100,9,26,5]
+
+function bubbleSort1(array){
+	const length = array.length
+	for (let i = 0; i < length; i++){
+		for (let j = 0; j < length; j++){
+			if (array[j] > array[j+1]){
+				//swap numbers
+				let temp = array[j]
+				array[j] = array[j+1]
+				array[j+1] = temp
+			}
+		}
+	}
+}
+bubbleSort1(numbers)
+console.log(numbers)
+
 function bubbleSort(array){
 	let sort = []
 	for (let i = 0; i < array.length; i++){
@@ -125,4 +142,4 @@ function bubbleSort(array){
 	console.log('done')
 	return sort
 }
-console.log(bubbleSort(numbers))
+//console.log(bubbleSort(numbers))
