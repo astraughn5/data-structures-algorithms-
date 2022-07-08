@@ -110,4 +110,19 @@ function fibonnaciIterative(n){ //O(n)
 //console.log(fibonnaciIterative(3))
 
 numbers = [5,2,100,9,26,5]
-console.log(numbers.sort((a,b) => a - b))
+function bubbleSort(array){
+	let sort = []
+	for (let i = 0; i < array.length; i++){
+		for (let j = i + 1; j < array.length; j++)
+		if (array[i] < array[j]){
+			sort.push(array[i])
+			sort.push(array[j])
+		}
+		else {
+			sort.push(array[j])
+		}
+	}
+	console.log('done')
+	return sort
+}
+console.log(bubbleSort(numbers))
