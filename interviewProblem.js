@@ -107,4 +107,7 @@ function fibonnaciIterative(n){ //O(n)
 	return arr[n]
 
 }
-console.log(fibonnaciIterative(3))
+//console.log(fibonnaciIterative(3))
+
+numbers = [5,2,100,9,26,5]
+console.log(numbers.sort((a,b) => a - b))
