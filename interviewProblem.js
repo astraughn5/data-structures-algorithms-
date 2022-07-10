@@ -243,6 +243,6 @@ function mergeSort (array){
 				rightIndex++
 			}
 		}
-
+		return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex))
 	}
 }
