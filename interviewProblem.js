@@ -62,6 +62,17 @@ function findPair2 (array, sum){
 	// console.log(stack)
 
 }
+function findPair3(nums,target){ //this one returns the indexes of the values
+	const difference = new Set()
+    let stack = []
+    for (let i = 0; i < nums.length; i++){
+        if (difference.has(nums[i])){
+            stack.push(nums.indexOf(target-nums[i]),i)
+        }
+        difference.add(target - nums[i])
+    }
+    return stack
+}
 
 // console.log(findPair2(array1, sum1))
 // console.log(findPair2(array2, sum2))
@@ -566,21 +577,21 @@ function traversePostOrder(node, list){
    //     9
   //  4     20
   //1  6  15  170
-  const tree = new BinarySearchTree();
-  tree.insert(9)
-  tree.insert(4)
-  tree.insert(6)
-  tree.insert(20)
-  tree.insert(170)
-  tree.insert(15)
-  tree.insert(1)
-  tree.remove(170)
-  JSON.stringify(traverse(tree.root))
- // tree.breadthFirstSearch()
-  //console.log(tree.breadthFirstSearchRecursive([tree.root],[]))
-  console.log(tree.DFSInOrder())
-  console.log(tree.DFSPreOrder())
-  console.log(tree.DFSPostOrder())
+//   const tree = new BinarySearchTree();
+//   tree.insert(9)
+//   tree.insert(4)
+//   tree.insert(6)
+//   tree.insert(20)
+//   tree.insert(170)
+//   tree.insert(15)
+//   tree.insert(1)
+//   tree.remove(170)
+//   JSON.stringify(traverse(tree.root))
+//  // tree.breadthFirstSearch()
+//   //console.log(tree.breadthFirstSearchRecursive([tree.root],[]))
+//   console.log(tree.DFSInOrder())
+//   console.log(tree.DFSPreOrder())
+//   console.log(tree.DFSPostOrder())
  
   
   function traverse(node) {
@@ -589,4 +600,42 @@ function traversePostOrder(node, list){
 	tree.right = node.right === null ? null : traverse(node.right);
 	return tree;
   }
+  let calculations = 0
+  function fibonacci(n){
+	calculations++  
+	if (n < 2){
+		  return n
+	  }
+	  return fibonacci(n-1) + fibonacci(n-2)
+  }
+  //console.log(fibonacci(7))
   
+
+  function fibonacciMem(){
+	  let cache = {}
+	  return function fib (n){
+		calculations++  
+		if (n in cache){
+			  return cache[n]
+		  }else {
+			  if (n < 2){
+				  return n
+			  }else{
+				  cache[n] = fib(n-1) + fib(n-2)
+				  return cache[n]
+			  }
+		  }
+	  }
+  }
+
+  function fibBottomUp(n){
+	  let answer = [0,1]
+	  for (let i =2; i <= n; i++){
+		  answer.push(answer[i-2] + answer[i-1])
+	  }
+	  return answer.pop()
+  }
+
+  const fastFib = fibonacciMem()
+  console.log(fastFib(10))
+  console.log('calculations', calculations)
