@@ -42,4 +42,4 @@ function mergeSort(arr){
 		return merge[n]
 		
 	}
-	console.log(indexFind(4, [90,28,15,1,24,35,17]))
+	//console.log(indexFind(4, [90,28,15,1,24,35,17]))

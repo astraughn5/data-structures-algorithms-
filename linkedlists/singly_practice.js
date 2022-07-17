@@ -14,13 +14,13 @@ class SinglyLinkedList {
 	}
 
 //insert first
-insertFirstAppend(value){
+insertFirstPrepend(value){
 	this.head = new Node(value, this.head)
 	this.length ++
 }
 
 //insert last
-insertLastPrepend(value){
+insertLastAppend(value){ //O(1) solution would be having a this.tail
 	let node = new Node(value)
 	let current
 	if (this.head == null){
@@ -88,6 +88,11 @@ insertNodeSorted(value){
 
 	this.length++
 	return 
+}
+
+//add item at end of LL
+append(){
+
 }
 
 //remove node at index
