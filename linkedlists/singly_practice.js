@@ -18,6 +18,49 @@ insertFirstPrepend(value){
 	this.head = new Node(value, this.head)
 	this.length ++
 }
+prepend(value){
+    if (this.length === 0){
+      this.head = new Node (value)
+    } else {
+      this.head = new Node(value, this.head)  
+    }  
+  this.length++
+}
+append(value){
+    let current = this.head
+    while(current.next !== null){
+      current = current.next
+    }
+    current.next = new Node(value)
+    this.length++
+	return
+  }
+
+insertNode(value,index){
+    let current = this.head
+    let counter = 0
+    let previous
+    const node = new Node(value)
+    if(index > this.length){
+      this.append(value)
+    }
+
+    if (index ===  0){
+       this.prepend(value)
+    }
+
+    while(counter < index ){
+      previous = current
+      current = current.next
+      counter++
+    }
+    node.next = current
+    previous.next = node
+    this.length++
+    return
+  }
+
+
 
 //insert last
 insertLastAppend(value){ //O(1) solution would be having a this.tail
@@ -56,9 +99,12 @@ insertNodeAtIndex(value,index){
 	current = this.head
 	let count = 0
 	while (count < index){
+		console.log('count',count)
 		previous = current //node before index
+		console.log('previous', previous)
 		count++
 		current = current.next //node after index
+		console.log('current', current)
 	}
 	node.next = current
 	previous.next = node
@@ -90,11 +136,29 @@ insertNodeSorted(value){
 	return 
 }
 
-//add item at end of LL
-append(){
+removeAtIndex1(index){
+	let current = this.head
+	let counter = 0
+	let prev 
+	if (index > 0 && index > this.length){
+	  return
+	}
 
-}
-
+	if (index === 0){
+	  this.head = current.next
+	} else{
+		while(counter < index){
+			console.log(counter)
+			counter++
+			prev = current 
+			current = current.next
+		}
+		prev.next = current.next
+	}
+	this.length--
+	return
+  }
+  
 //remove node at index
 removeAtIndex(index){
 	if (index > 0 && index > this.length){
@@ -119,7 +183,18 @@ removeAtIndex(index){
 	return 
 }
 
-
+getValue(index){
+	let current = this.head
+	let counter = 0
+	while(counter <= index){
+		if ( counter === index){
+			return current.value
+			}
+		counter++
+	  current = current.next
+	  
+	}
+}  
 //get value from index
 getValueFromIndex(index){
 	let current = this.head
@@ -161,6 +236,7 @@ checkCycle(){
 		fast = fast.next.next
 		slow = slow.next
 		if(fast === slow){
+			console.log(fast.value)
 			return true
 		}
 	}
@@ -183,16 +259,25 @@ reverseList(){
 }
 }
 const linkedList = new SinglyLinkedList()
-linkedList.insertFirstAppend(40)
-linkedList.insertFirstAppend(30)
-linkedList.insertFirstAppend(10)
-linkedList.insertLastPrepend(50)
+// linkedList.insertFirstPrepend(40)
+// linkedList.insertFirstPrepend(30)
+// linkedList.insertFirstPrepend(10)
+// linkedList.insertLastAppend(50)
+linkedList.prepend(30)
+linkedList.prepend(20)
+linkedList.prepend(10)
+linkedList.prepend(5)
+linkedList.removeAtIndex1(2)
+//linkedList.removeAtIndex(1)
+//linkedList.insertNode(15,1)
+//console.log(linkedList.getValue(0))
+//linkedList.insertLastAppend(20)
 //linkedList.insertNodeAtIndex(5,1)
-linkedList.insertNodeSorted(31)
+//linkedList.insertNodeSorted(31)
 console.log(linkedList.printListInArray())
 //console.log(linkedList.checkCycle())
 console.log(linkedList)
-console.log(linkedList.reverseList())
+//console.log(linkedList.reverseList())
 //linkedList.removeAtIndex(0)
 //linkedList.getValueFromIndex(10)
 //linkedList.clearList()
