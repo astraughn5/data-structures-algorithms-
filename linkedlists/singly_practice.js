@@ -42,11 +42,11 @@ insertNode(value,index){
     let previous
     const node = new Node(value)
     if(index > this.length){
-      this.append(value)
+     return this.append(value)
     }
 
     if (index ===  0){
-       this.prepend(value)
+       return this.prepend(value)
     }
 
     while(counter < index ){
@@ -59,8 +59,7 @@ insertNode(value,index){
     this.length++
     return
   }
-
-
+	
 
 //insert last
 insertLastAppend(value){ //O(1) solution would be having a this.tail
@@ -242,7 +241,20 @@ checkCycle(){
 	}
 	return false
 }
-
+reverse(){
+	let prev = null 
+	let current = this.head
+	let next = null
+	while(current !== null){
+	next = current.next 
+	current.next = prev
+	prev = current
+	current = next
+	}
+	return prev
+  }
+  
+  
 //reverse a singlely linked list
 reverseList(){
 	let prev = null
@@ -267,7 +279,8 @@ linkedList.prepend(30)
 linkedList.prepend(20)
 linkedList.prepend(10)
 linkedList.prepend(5)
-linkedList.removeAtIndex1(2)
+linkedList.insertNode(15,5)
+//linkedList.removeAtIndex1(2)
 //linkedList.removeAtIndex(1)
 //linkedList.insertNode(15,1)
 //console.log(linkedList.getValue(0))
@@ -275,6 +288,8 @@ linkedList.removeAtIndex1(2)
 //linkedList.insertNodeAtIndex(5,1)
 //linkedList.insertNodeSorted(31)
 console.log(linkedList.printListInArray())
+
+console.log(linkedList.reverse())
 //console.log(linkedList.checkCycle())
 console.log(linkedList)
 //console.log(linkedList.reverseList())

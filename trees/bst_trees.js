@@ -169,19 +169,20 @@ class BST {
 		let currentNode = this.root;
 		let list = [];
 		let queue = [];
-		queue.push(currentNode);
+		queue.push(currentNode); //add starting queue
 
 		while (queue.length > 0){
-			currentNode = queue.shift();
-			list.push(currentNode.data);
-			if (currentNode.left){
+			currentNode = queue.shift(); //set current to equal the root 
+			list.push(currentNode.data); //move to list
+			console.log(list)
+			if (currentNode.left){ //check if there is a left node and add to queue
 				queue.push(currentNode.left)
 			}
-			if (currentNode.right){
+			if (currentNode.right){ //check if there is a right node and add to queue
 				queue.push(currentNode.right);
 			}
 		}
-		console.log(list)
+		//console.log(list)
 		return list
 	}
 
@@ -269,31 +270,28 @@ var invertTree = root => {
 };
 
 const bst = new BST()
-bst.add(9);
-bst.add(4);
-bst.add(17);
-bst.add(3);
-bst.add(6);
-bst.add(22);
-bst.add(5);
-bst.add(7);
-bst.add(20);
 bst.add(10);
+bst.add(5);
+bst.add(20);
+bst.add(15);
+bst.add(12);
+bst.add(30);
+bst.add(4);
 //bst.remove(4)
 //console.log(bst.findNode(3))
 //console.log(bst.findMax())
 //console.log(bst.findMin())
 //console.log(bst.isPresent(3))
-console.log('not inverted',bst)
+//console.log('not inverted',bst)
 
 
-console.log(invertTree(bst))
+//console.log(invertTree(bst))
 //console.log('inverted',bst)
 // console.log(bst.findMinHeight())
 // console.log(bst.findMinHeight())
 // console.log(bst.isBalanced())
 // console.log(bst.isValidBST(9))
-//bst.bfs()
-// console.log(bst.dfsInOrder())
+bst.bfs()
+console.log(bst.dfsInOrder())
 // console.log(bst.dfsPreOrder())
 // console.log(bst.dfsPostOrder())
