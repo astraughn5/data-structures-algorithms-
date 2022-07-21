@@ -1,52 +1,58 @@
-const edges = [
-	['w', 'x'],
-	['x', 'y'],
-	['z', 'y'],
-	['z', 'v'],
-	['w', 'v']
+ 
+const grid = [
+	['W', 'L', 'W', 'W', 'W'],
+	['W', 'L', 'W', 'W', 'W'],
+	['W', 'W', 'W', 'L', 'W'],
+	['W', 'W', 'L', 'L', 'W'],
+	['L', 'W', 'W', 'L', 'L'],
+	['L', 'L', 'W', 'W', 'W']
  ]
- //return the shortest path where the weight is the # of edges --> BFS, queues (FIFO)
- //have main function that takes in the edges, src, dst
- //have a helper function to convert edges to adjacency list
+  
+ //return the minimum island count of the islands within the grid graph
+ // main function that manages the node traversal, help function that traverses the neighbors
  
- function shortestPath(edges, src, dest){
-   const graph = convertToAdjList(edges)
-   let queue = [ [src, 0] ]
-   const visited = new Set([src])
- 
-   while (queue.length > 0){
-	 const [ node, distance ] = queue.shift()
-	 if (node === dest){
-	   return distance
-	 }
-	 for (let neighbor of graph[node]){
-	   if (!visited.has(neighbor)){
-		 visited.add(neighbor)
-		 queue.push([ neighbor, distance + 1])
+ const minIsland = (grid) => {
+   const visited = new Set()
+   let max = 0
+   for (let r = 0; r < grid.length; r++){
+	 for (let c = 0; c < grid[0].length; c++){
+	   const size = explore(grid, r, c, visited)
+	   if(max < size && size > 0){
+		 max = size
 	   }
-	 }    
+	 }
    }
-   return -1
+   return max
  }
  
- function convertToAdjList(edges){
-   const graph = {}
-   for (let edge of edges){
-	 const [ a, b ] = edge
-	 if (!(a in graph)){
-	   graph[a] = []
-	 }
-	 if (!(b in graph)){
-	   graph[b] = []
-	 }
- 
-	graph[a].push(b)
-	graph[b].push(a)
+ const explore = (grid, r, c, visited) => {
+   const rowInBounds = 0 <= r && r < grid.length
+   const colInBounds = 0 <= c && c < grid[0].length
+   
+   if (!rowInBounds || !colInBounds){
+	 return 0
    }
-   return graph
- }
  
-console.log(shortestPath(edges, 'w', 'x'))
+   if (grid[r][c] === 'W'){
+	 return 0
+   }
+ 
+   const pos = r + ',' + c
+   if (visited.has(pos)){
+	 return 0
+   }
+   visited.add(pos)
+   let size = 1
+   
+   size += explore(grid, r - 1, c, visited)
+   size += explore(grid, r + 1, c, visited)
+   size += explore(grid, r, c - 1, visited)
+   size += explore(grid, r, c + 1, visited)
+ 
+   return size
+ }
+ console.log(minIsland(grid))
+ 
    
 
 // const graph = {

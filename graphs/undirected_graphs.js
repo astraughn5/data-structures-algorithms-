@@ -187,6 +187,13 @@ function exploreIslands(graph, node, visited){
 //shortest path, given a start and end node and want to return the shortest length (path length = the number of edges here)
 
 //bfs for graph
+const edges1 = [
+	['w', 'x'],
+	['x', 'y'],
+	['z', 'y'],
+	['z', 'v'],
+	['w', 'v']
+]
 const shortestPath = (edges, nodeA, nodeB) => {
 	const graph = buildGraph1(edges)
 	const queue = [ [nodeA, 0] ]
@@ -316,3 +323,46 @@ const explore2 = (grid, r, c, visited) => {
 	return size
 }
 //console.log(minIsland(grid))
+
+const bfsSearch = (graph, src) => {
+	const queue = [[src]]
+	const result = []
+	const visited = new Set(src)
+  
+	while (queue.length > 0){
+	  const [node] = queue.shift()
+	  result.push(node)
+  
+	  for (let neighbor of graph[node]){
+		if(!visited.has(neighbor)){
+		  visited.add(neighbor)
+		  queue.push([neighbor])
+		}
+	  }
+	}
+	return result
+  }
+  //console.log(bfsSearch(graph1, 1))
+
+  const shortestPath1 = (edges, nodeA, nodeB) => {
+	const graph = buildGraph1(edges)
+	const queue = [ [nodeA, 0] ]
+	const visited = new Set([ nodeA ])
+
+	while(queue.length > 0){
+		const [node, distance] = queue.shift()
+
+		if (node === nodeB) return distance
+
+		for(let neighbor of graph[node]){
+			if (!visited.has(neighbor)){
+				visited.add(neighbor)
+				queue.push( [neighbor, distance +1] )
+			}
+		}
+	}
+
+	return -1
+}
+
+

@@ -174,7 +174,7 @@ class BST {
 		while (queue.length > 0){
 			currentNode = queue.shift(); //set current to equal the root 
 			list.push(currentNode.data); //move to list
-			console.log(list)
+			//console.log(list)
 			if (currentNode.left){ //check if there is a left node and add to queue
 				queue.push(currentNode.left)
 			}
@@ -291,7 +291,46 @@ bst.add(4);
 // console.log(bst.findMinHeight())
 // console.log(bst.isBalanced())
 // console.log(bst.isValidBST(9))
-bst.bfs()
-console.log(bst.dfsInOrder())
+//bst.bfs()
+//console.log(bst.dfsInOrder())
 // console.log(bst.dfsPreOrder())
 // console.log(bst.dfsPostOrder())
+
+
+
+  
+  const bfsTraversal = (tree)=> {
+	let current = tree.root
+	let result = []
+	let queue = [current]
+	
+	while(queue.length > 0){
+	  current = queue.shift()
+	  result.push(current.data)
+  
+	  if (current.left){
+		queue.push(current.left)
+	  }
+	  if (current.right){
+		queue.push(current.right)
+	  }
+	}
+	return result 
+  }
+  //console.log(bfsTraversal(bst))
+  const dfsTraversal = (tree)=> {
+	function traverse(node, result){
+	 if (node.left){
+	   traverse(node.left, result)
+	 }
+	 result.push(node.data)
+  
+	 if (node.right){
+	   traverse(node.right, result)
+	 }
+	 return result
+	}
+	return traverse(tree.root, [])
+  }
+  console.log(dfsTraversal(bst))
+  

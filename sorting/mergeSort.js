@@ -43,3 +43,6 @@ function mergeSort(arr){
 		
 	}
 	//console.log(indexFind(4, [90,28,15,1,24,35,17]))
+
+
+

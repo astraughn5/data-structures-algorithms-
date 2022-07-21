@@ -1,5 +1,5 @@
 //declare a node
-class Node{
+/*class Node{
 	constructor(value, next = null){
 		this.value = value
 		this.next = next
@@ -297,3 +297,74 @@ console.log(linkedList)
 //linkedList.getValueFromIndex(10)
 //linkedList.clearList()
 //console.log(linkedList)
+*/
+
+class Node{
+	constructor(value, next = null){
+		this.value = value
+		this.next = next
+	}
+}
+
+class LL {
+	constructor(){
+		this.head = null
+		this.length = 0
+	}
+
+	insert(value, index){
+		let current = this.head
+		let count = 0
+		let prev
+		let node = new Node(value)
+		//check if index is greater than length
+		//check if index = 0
+		while (count < index){
+			count++
+			prev = current
+			current = current.next
+		}
+		node.next = current
+		prev.next = node
+		this.length++
+		return
+	}
+
+	prepend(value){
+	  let current = this.head
+	  if(!current){
+		  this.head = new Node(value)
+	  }else{
+		  this.head = new Node(value, this.head)
+	  }
+	this.length++ 
+	  return this
+	}
+
+	append(value){
+		let current = this.head
+		while(current.next !== null){
+			current = current.next
+		}
+		current.next = new Node(value)
+		this.length++
+		return this
+	}
+
+	remove(index){
+		let current = this.head
+		let prev 
+		let count = 0
+		//check if index > length
+		//check if index == 0
+		while(count < index){
+			prev = current
+			current = current.next
+			count++
+		}
+		prev.next = current.next
+		this.length--
+		return
+	}
+}
+
